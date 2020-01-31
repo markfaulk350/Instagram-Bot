@@ -1,0 +1,24 @@
+{
+  "name": "Instagram-Bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markfaulk350/Instagram-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markfaulk350/Instagram-Bot/issues"
+  },
+  "homepage": "https://github.com/markfaulk350/Instagram-Bot#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "puppeteer": "^2.1.0"
+  }
+}
