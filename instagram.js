@@ -27,6 +27,12 @@ const instagram = {
         // // Wait for an additional second to make sure the page has loaded
         // await instagram.page.waitFor(1000);
 
+        await instagram.page.setViewport({
+            width: 1920,
+            height: 1080,
+            deviceScaleFactor: 1,
+        });
+
         await instagram.page.goto(loginPageURL, { waitUntil: 'networkidle2' });
         await instagram.page.waitFor(2000);
 
@@ -41,6 +47,44 @@ const instagram = {
         // Target and click "Log in" button after entering userName & password
         let loginBtn = await instagram.page.$x('//button//div[contains(text(), "Log In")]');
         await loginBtn[0].click();
+
+        await instagram.page.waitFor(6000);
+
+        // Target and click "Not Now" on banner
+        let notNowBtn = await instagram.page.$x('//button[contains(text(), "Not Now")]')
+        await notNowBtn[0].click();
+
+        await instagram.page.waitFor(3000);
+    },
+
+    slideShow: async (searchTerm, quantity) => {
+        // Target search bar and enter in tag
+        await instagram.page.type('input[placeholder="Search"]', searchTerm, { delay: 100 });
+        await instagram.page.waitFor(3000);
+
+        // Target and click on search result to go to tags page
+        let searchResult = await instagram.page.$x(`//div//span[contains(text(), "${searchTerm}")]`)
+        await searchResult[0].click();
+
+        await instagram.page.waitFor(6000);
+
+        // Check that we can get most recent posts
+        // document.querySelectorAll('article > div:nth-child(3) img[decoding="auto"]')
+
+        // let posts = await instagram.page.$$('article > div:nth-child(3)')
+
+        // Target and click on first most recent post
+        let firstPost = await instagram.page.$$('article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(1)')
+        await firstPost[0].click();
+
+        // Then hit the next button
+        let nextBtn;
+
+        for (let i = 0; i < quantity; i++) {
+            await instagram.page.waitFor(1000);
+            nextBtn = await instagram.page.$$('a[class="HBoOv coreSpriteRightPaginationArrow"]');
+            await nextBtn[0].click();
+        }
 
         debugger;
     }

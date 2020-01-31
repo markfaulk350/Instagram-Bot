@@ -7,6 +7,8 @@ const ig = require('./instagram');
 
     await ig.login(process.env.USERNAME, process.env.PASSWORD);
 
+    await ig.slideShow('#paragliding', 5);
+
     debugger;
 
 })()
