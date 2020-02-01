@@ -34,7 +34,7 @@ const instagram = {
         });
 
         await instagram.page.goto(loginPageURL, { waitUntil: 'networkidle2' });
-        await instagram.page.waitFor(2000);
+        await instagram.page.waitFor(5000);
 
         // Inside of chrome console we can type a command to see if targeting the elemant works
         // document.querySelector('input[name="username"]')
@@ -81,7 +81,7 @@ const instagram = {
         let nextBtn;
 
         for (let i = 0; i < quantity; i++) {
-            await instagram.page.waitFor(1000);
+            await instagram.page.waitFor(5000);
             nextBtn = await instagram.page.$$('a[class="HBoOv coreSpriteRightPaginationArrow"]');
             await nextBtn[0].click();
         }
